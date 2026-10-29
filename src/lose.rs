@@ -1,14 +1,12 @@
 use crate::ui::label::Label;
 use crate::ui::still_image::StillImage;
 use crate::utils::preload_image::TextureManager;
-use crate::utils::preload_image::LoadingScreenOptions; // If you want to customize the loading screen
-use crate::utils::collision::check_collision;
 
 use macroquad::prelude::*;
 
 pub async fn run(tm: TextureManager, mut score: i32,) -> (String, TextureManager, i32 ){
 
-    let mut lose= StillImage::from_preload(
+    let lose= StillImage::from_preload(
     tm.get_preload("assets/lose.png").unwrap(),
     screen_width(),  // Width
     screen_height(), // Height

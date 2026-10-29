@@ -1,6 +1,5 @@
 use crate::ui::still_image::StillImage;
 use macroquad::prelude::*;
-use macroquad::input::KeyCode;
 
 pub struct Bullet {
     pub image: StillImage,

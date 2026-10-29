@@ -17,7 +17,6 @@ impl Player {
         image_name: &str,
         stretch: bool,
         zoom: f32,
-        speed: f32,
         old_pos: Vec2,
     ) -> Self {
         let image = StillImage::new(image_name, width, height, x, y, stretch, zoom).await;
@@ -33,9 +32,7 @@ impl Player {
     pub fn get_image(&self) -> &StillImage {
         &self.image
     }
-pub fn get_x(&self) -> f32 {
-    self.image.get_x()
-}
+
     pub fn keypress(&mut self) {
   
             // Direction to move in

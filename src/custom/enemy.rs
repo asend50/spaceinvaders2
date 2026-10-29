@@ -15,7 +15,6 @@ impl Enemy {
         image_name: &str,
         stretch: bool,
         zoom: f32,
-        speed: f32,
     ) -> Self {
         let image = StillImage::new(image_name, width, height, x, y, stretch, zoom).await;
 

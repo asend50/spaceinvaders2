@@ -1,7 +1,6 @@
 use crate::ui::label::Label;
 use crate::ui::still_image::StillImage;
 use crate::utils::preload_image::TextureManager;
-use crate::utils::preload_image::LoadingScreenOptions; // If you want to customize the loading screen
 use crate::utils::collision::check_collision;
 use crate::custom::player::Player;
 use crate::custom::bullet::Bullet;
@@ -19,11 +18,10 @@ pub async fn run(tm: TextureManager, mut score: i32,) -> (String, TextureManager
     "assets/player.png",    // Image name
     true,                   // Enable stretching
     1.0,                    // Zoom level (100%)
-    3.0,                    // Speed
     vec2(35.0, 15.0),       // Old position
 ).await;
 
-    let mut background= StillImage::from_preload(
+    let background= StillImage::from_preload(
     tm.get_preload("assets/gamebackground.png").unwrap(),
     screen_width(),  // Width
     screen_height(), // Height
@@ -33,7 +31,7 @@ pub async fn run(tm: TextureManager, mut score: i32,) -> (String, TextureManager
     1.0,                   // Zoom level (100%)
 );
 
-let mut gamebars= StillImage::from_preload(
+let gamebars= StillImage::from_preload(
     tm.get_preload("assets/gamebars.png").unwrap(),
     screen_width(),  // Width
     screen_height(), // Height
@@ -57,7 +55,7 @@ let max_x = 585.0;
 
 for row in 0..rows {
     for col in 0..columns {
-        let mut enemy = Enemy::new(
+        let enemy = Enemy::new(
             240.0 + col as f32 * spacing_x,
             25.0 + row as f32 * spacing_y,
             screen_width() * 0.055,
@@ -65,7 +63,6 @@ for row in 0..rows {
             "assets/enemy.png",
             true,
             1.0,
-            3.0,
         ).await;
         enemies.push(enemy);
     }
@@ -99,7 +96,7 @@ let mut shoot_cooldown = 0.0;
          if is_key_down(KeyCode::Space) && shoot_cooldown <= 0.0 {
         shoot_cooldown = 0.75;
 
-        let mut bullet = Bullet::new(
+        let bullet = Bullet::new(
             player.image.get_x() + 25.0,
             player.image.get_y(),
             screen_width() * 0.02,
@@ -141,10 +138,9 @@ let mut shoot_cooldown = 0.0;
     }
 
 
-    let mut last_shot = 0.0;
+    let last_shot = 0.0;
 
 if is_key_down(KeyCode::Space) && get_time() - last_shot > 1.0 {
-    last_shot = get_time();
 }
 
 // move entire fleet
